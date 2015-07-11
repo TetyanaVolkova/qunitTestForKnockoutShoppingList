@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Knockout Shopping List Test</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qunit/1.16.0/qunit.css">
+	<script src="http://code.jquery.com/qunit/qunit-1.18.0.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+	<script src="ViewModel.js"></script>
+  <script>
+
+QUnit.test("Adding item to list", function(assert) {
+	//arrange
+	var sut = new ViewModel();
+	sut.productName("Apple");
+	sut.addProduct();
+	sut.productName("Orange");
+	//act
+	sut.addProduct();
+	//assert
+	assert.equal(sut.shoppingList().length, 2);
+	assert.equal(sut.productName(), "");
+	assert.equal(sut.shoppingList()[0].product, "Apple");
+	assert.equal(sut.shoppingList()[0].bought(), false);
+});
+
+  </script>
+</head>
+<body>
+	<div id="qunit"></div>
+</body>
+</html>
