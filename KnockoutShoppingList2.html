@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta Charset='utf-8'>
+	<title>Shopping List</title>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">-->
+
+	<style>
+	.tableD {
+		width: 300px;
+	}
+	#productT {
+		margin-top: 40px;
+		width: 500px;
+		position: relative;
+		margin-right: auto;
+		margin-left: auto;
+		border-bottom: 1px dotted gray;
+	}
+	.tRow {
+		height: 60px;
+
+	}
+	#formGroup {
+		width: 500px;
+		margin-top: 50px;
+		position: relative;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	#addButton {
+		margin-left: 30px;
+		border-radius: 5px;
+		border-style: groove;
+	}
+	#productName {
+		margin-left: 10px;
+		width: 205px;
+	}
+	#lable {
+		font-size: 18px;
+		font-weight: 500;
+	}
+	.checkBoxClass {
+		float: left;
+		margin-top: 4px;
+	}
+	.whatToBuy {
+		float: left;
+		margin-left: 15px;
+		font-size: 20px;
+		color: gray;
+	}
+	#deleteX {
+		font-weight: 400;
+		color: red;
+		font-size: 15px;
+		cursor: pointer;
+	}
+	#deleteXShow {
+	}
+	.divholder {
+		margin-top: 8px;
+	}
+	.crossOver {
+		text-decoration: line-through; 
+	}
+	#deleteButton {
+		width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 40px;
+	}
+	</style>
+</head>
+
+<body>
+<div class="contaner container-fluid">
+	<div class="row-fluid">
+		<!--<div class="span8 offset2">-->
+		<div class="form-group form-inline" id="formGroup">
+			<label for="Product Name" id="lable">Product Name:</label>
+
+			<input type="text" class="form-control" id="productName" placeholder="What Need To Buy"  data-bind="value: productName, valueUpdate: 'afterkeydown', hasfocus: on"/>
+
+			<button class="btn btn-default" id="addButton"  data-bind="click: addProduct, enable: productName">Add Product<span class="glyphicon "</span></button>
+<button type="button" class="btn btn-info btn-block" id="deleteButton" data-bind="click: deleteButton">Delete Whole List</button>
+	<div  id="productTable">
+		<table  id="productT" class="table table-hover" data-bind="foreach: shoppingList">
+			<tr class="tRow">
+				<td><input type="checkbox" data-bind="checked: bought"/></td>
+				<td><span data-bind="text: product, style: { textDecoration: bought() ? 'line-through' : 'none' }"></span></td>
+				<td><span id="deleteX" data-bind="click: $parent.deleteProduct">X</span></td>
+			</tr>
+		</table>
+	</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="jquery.autocomplete.min.js"></script>
+<script tipe="text/javascript" src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.1.0.js"></script>
+<script src="ViewModel.js"></script>
+<script>
+$(document).ready(function() {
+	ko.applyBindings(new ViewModel());
+});
+</script>
+</body>
+</html>
